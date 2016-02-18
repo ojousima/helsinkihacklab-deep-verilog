@@ -11,15 +11,18 @@ module main(
         output  wire    [7:0]       sw_out
     );
 
-    wire [7:0] state_next;
-	 reg  [7:0] state = 0;
+    wire        [7:0]   state_next;
+    reg         [7:0]   state = 0;
 
-    assign state_next = state + 1;
-	 
-	 always @(posedge slowclk) begin
-	     state <= state_next;
-	 end
-	 
-	 assign sw_out = state;
+    // Next state kombinaatiologiikka
+    assign      state_next = state + (~sw_in);
+    
+    // Sekvenssilogiikka
+    always @(posedge slowclk) begin
+        state <= state_next; 
+    end
+
+    // Output kombinaatiologiikka
+    assign      sw_out = state;
     
 endmodule
