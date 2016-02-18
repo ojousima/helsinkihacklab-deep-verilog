@@ -1,0 +1,17 @@
+#gitignore folder
+
+gitignore
+gitignore/*
+
+#_xmsgs folder
+_xmsgs/
+
+#iseconfig folder
+iseconfig/
+
+#html files
+*.html
+
+#gise files
+*.gise
+
