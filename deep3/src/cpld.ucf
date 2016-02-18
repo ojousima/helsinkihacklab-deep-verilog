@@ -1,0 +1,30 @@
+
+#******************************************************************
+#
+#  Helsinki Hacklab - Protoboard for digital electronics workshops
+#    
+#  I/O Pin Assignments for CPLD 1  
+#  
+#  XC9572XL-VQ44
+#  
+#******************************************************************
+
+NET "slowclk"    LOC = "P44" | BUFG = CLK;      # slowCLK (100 Hz oscillator)
+
+NET "sw_in<7>"   LOC = "P37";                    # switch s8, "MSB" (leftmost)
+NET "sw_in<6>"   LOC = "P36";                    # switch s7
+NET "sw_in<5>"   LOC = "P34";                    # switch s6
+NET "sw_in<4>"   LOC = "P33";                    # switch s5
+NET "sw_in<3>"   LOC = "P32";                    # switch s4
+NET "sw_in<2>"   LOC = "P31";                    # switch s3
+NET "sw_in<1>"   LOC = "P30";                    # switch s2
+NET "sw_in<0>"   LOC = "P29";                    # switch s1, "LSB" (rightmost)
+
+NET "sw_out<7>"  LOC = "P38";                    # signal sw1, labeled '7' (leftmost)
+NET "sw_out<6>"  LOC = "P39";                    # signal sw2, labeled '6'
+NET "sw_out<5>"  LOC = "P40";                    # signal sw3, labeled '5'
+NET "sw_out<4>"  LOC = "P41";                    # signal sw4, labeled '4'
+NET "sw_out<3>"  LOC = "P42";                    # signal sw5, labeled '3'
+NET "sw_out<2>"  LOC = "P43";                    # signal sw6, labeled '2'
+NET "sw_out<1>"  LOC = "P2";                    # signal sw7, labeled '1'
+NET "sw_out<0>"  LOC = "P3";                    # signal sw8, labeled '0' (rightmost)
