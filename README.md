@@ -1,7 +1,7 @@
 #helsinkihacklab-deep-verilog
-Exercises from Helsinki Hacklab dEEP/Verilog course. This course uses CPLD development board developed by Kremmen, source files can be 
+Exercises from Helsinki Hacklab dEEP/Verilog course. This course uses CPLD development board developed by [Kremmen](https://github.com/theKremmen), source files can be found [here](https://github.com/HelsinkiHacklab/CPLD_protoboard_1)
 
-Some of the original files can be found at [JKN0's repository](https://github.com/JKN0) 
+Some of the original software files can be found at [JKN0's repository](https://github.com/JKN0)
 
 ##Setting up the environment
 Install XLINX ISE Webpack as per instructions [HERE] (./SETUP.md) 
