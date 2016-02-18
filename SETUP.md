@@ -29,30 +29,31 @@ Although Ubuntu is not officially supported, the software has been successfully 
 
 Download the installer from Downloads -> ISE Design Tools -> 14.7
 
-'If you wish to bypass the use of the Xilinx download manager, please see AR# 5784' -> http://www.xilinx.com/support/answers/57840.html
+If you wish to bypass the use of the Xilinx download manager, please see AR# 5784 -> http://www.xilinx.com/support/answers/57840.html
 
     -> ISE Design Suite - 14.7 Full Product Installation for Linux (TAR/GZIP - 6.09 GB)
 
 Unpack the file with command 
-´´´
-tar -xvf Xilinx_ISE_DS_Lin_14.7_1015_1.tar
-´´´
+
+    tar -xvf Xilinx_ISE_DS_Lin_14.7_1015_1.tar
+
 
 Installation takes up 14 GB and will take a while.
 
 Go to unpacked folder: 
-´´´
-cd Xilinx_ISE_DS_Lin_14.7_1015_1/
-´´´
+
+    cd Xilinx_ISE_DS_Lin_14.7_1015_1/
+
 
 Install
-´´´
-sudo ./xsetup
-´´´
+
+    sudo ./xsetup
+
 
     -> Next -> [X] [X] -> Next -> [X] -> Next -> ISE WebPACK -> Next
 
-The default settings are fine, do not install the cable driver yet. -> [ ] [X] [x] [ ]
+The default settings are fine, do not install the cable driver yet. 
+    -> [ ] [X] [x] [ ]
 
 Uncheck the first checkbox if you have already downloaded the license file.
 
@@ -64,40 +65,27 @@ Start-up:
 
 Copy the license to its place in user's home folder under .Xilinx, for example: 
 
-´´´
     mkdir ~/.Xilinx
     cp ~/Downloads/Xilinx.lic ~/.Xilinx/Xilinx.lic
-´´´
 
 Start ISE:
 
-´´´
-source /opt/Xilinx/14.7/ISE_DS/settings64.sh && ise
-´´´
+    source /opt/Xilinx/14.7/ISE_DS/settings64.sh && ise
 
 Gnome based desktops can have .desktop file:
 
-´´´
     nano xilinx-ise.desktop
     
     [Desktop Entry]
-
     Version=1.0
-
     Name=Xilinx ISE
-
     Type=Application
-
     Terminal=false
-
     Icon=/opt/Xilinx/14.7/ISE_DS/ISE/data/images/pn-ise.png
-
     Exec=bash -c "source /opt/Xilinx/14.7/ISE_DS/settings64.sh && ise"
-
     Categories=Utility;Application;Development;
 
     sudo desktop-file-install --delete-original xilinx-ise.desktop
-´´´
     
 Now you can find ISE like other programs, for example by writing 'ISE' in ubuntu "start menu" and you can attach id to side pane 'Lock to Launcher'
 
@@ -112,44 +100,35 @@ Choose the Xilinx.lic file you downloaded earlier -> Ok -> Close
 
 Connect the programmer with USB-cable to machine and list USB devices:
 
-´´´
     lsusb
 
     Bus 003 Device 006: ID 03fd:0007 Xilinx, Inc. (tai :000F DLC9LP:llä)
-´´´
 
 Status led should be dim red. Disconnect the cable and run commands:
 
-´´´
     sudo apt-get install libusb-dev fxload
-
     sudo nano /etc/udev/rules.d/xusbdfwu.rules
-´´´
+
 Add these two lines to file:
 
-´´´
     ATTRS{idVendor}=="03fd", ATTRS{idProduct}=="0008", MODE="666"
 
     SUBSYSTEMS=="usb", ACTION=="add", ATTRS{idVendor}=="03fd", ATTRS{idProduct}=="0007", RUN+="/sbin/fxload -v -t fx2 -I /usr/share/xusbdfwu.hex -D $tempnode"
 
     SUBSYSTEMS=="usb", ACTION=="add", ATTRS{idVendor}=="03fd", ATTRS{idProduct}=="000f", RUN+="/sbin/fxload -v -t fx2 -I /usr/share/xusb_xlp.hex -D $tempnode"
-´´´
 
 Run
 
-´´´
     sudo cp /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/*.hex /usr/share/
-
     sudo /etc/init.d/udev restart
-´´´
 
-You can also try your luck with "sudo udevadm control --reload-rules"instead of udev restart.
+You can also try your luck with "sudo udevadm control --reload-rules" instead of udev restart.
 Reconnect USB, list devices again.
-´´´
+
     lsusb
 
     Bus 003 Device 010: ID 03fd:0008 Xilinx, Inc.
-´´´
+
 Status LED is now bright red and will turn green if you connect the programmer to a powered CPLD board.
 
 
